@@ -1,0 +1,192 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Post | ELEVER</title>
+    <style>
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 22px 70px;
+            background: #ffffff;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-size: 28px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .navbar a {
+            margin-left: 26px;
+            text-decoration: none;
+            color: #555;
+            font-size: 15px;
+        }
+
+        body {
+            margin: 0;
+            background: #f7f2ed;
+            font-family: Georgia, serif;
+        }
+
+        .form-box {
+            max-width: 700px;
+            margin: 80px auto;
+            background: white;
+            padding: 50px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, .1);
+        }
+
+        .form-box h2 {
+            margin: 0 0 30px;
+            font-weight: normal;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: Georgia, serif;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        label {
+            font-size: 14px;
+            color: #555;
+            letter-spacing: 1px;
+        }
+
+        #custom-category {
+            display: none;
+        }
+
+        #custom-category.show {
+            display: block;
+        }
+
+        .current-image {
+            margin-bottom: 20px;
+        }
+
+        .current-image img {
+            max-width: 200px;
+            border-radius: 6px;
+        }
+
+        .current-image p {
+            font-size: 12px;
+            color: #888;
+            margin: 5px 0 0;
+        }
+
+        button {
+            padding: 14px 40px;
+            background: #e6b8a2;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            letter-spacing: 1px;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background: #d4a08a;
+        }
+
+        .cancel-btn {
+            background: #888;
+        }
+
+        .cancel-btn:hover {
+            background: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% include 'partials/navbar.html' %}
+
+    <div class="form-box">
+        <h2>Edit Post</h2>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <label>Post Title</label>
+            <input type="text" name="title" value="{{ post.title }}" required>
+
+            <label>Post Content</label>
+            <textarea name="content" rows="8" required>{{ post.content }}</textarea>
+
+            <label>Category</label>
+            <select name="category" id="category-select" required>
+                <option value="Wellness" {% if post.category=='Wellness' %}selected{% endif %}>Wellness</option>
+                <option value="Lifestyle" {% if post.category=='Lifestyle' %}selected{% endif %}>Lifestyle</option>
+                <option value="Creative" {% if post.category=='Creative' %}selected{% endif %}>Creative</option>
+                <option value="Fashion" {% if post.category=='Fashion' %}selected{% endif %}>Fashion</option>
+                <option value="Photography" {% if post.category=='Photography' %}selected{% endif %}>Photography
+                </option>
+                <option value="Time Management" {% if post.category=='Time Management' %}selected{% endif %}>Time
+                    Management</option>
+                <option value="Travel" {% if post.category=='Travel' %}selected{% endif %}>Travel</option>
+                <option value="Other">Other (Create New)</option>
+            </select>
+
+            <div id="custom-category">
+                <label>Enter Custom Category</label>
+                <input type="text" name="custom_category" id="custom-category-input"
+                    placeholder="Type your new category...">
+            </div>
+
+            <label>Current Image</label>
+            <div class="current-image">
+                {% if post.image %}
+                <img src="{{ post.image.url }}" alt="Current image">
+                <p>Leave empty to keep current image</p>
+                {% else %}
+                <p>No image uploaded</p>
+                {% endif %}
+            </div>
+
+            <label>Change Image (optional)</label>
+            <input type="file" name="image">
+
+            <div style="margin-top: 30px;">
+                <button type="submit">Save Changes</button>
+                <a href="{% url 'dashboard' %}"><button type="button" class="cancel-btn">Cancel</button></a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const categorySelect = document.getElementById('category-select');
+        const customCategoryDiv = document.getElementById('custom-category');
+        const customCategoryInput = document.getElementById('custom-category-input');
+
+        categorySelect.addEventListener('change', function () {
+            if (this.value === 'Other') {
+                customCategoryDiv.classList.add('show');
+                customCategoryInput.required = true;
+            } else {
+                customCategoryDiv.classList.remove('show');
+                customCategoryInput.required = false;
+                customCategoryInput.value = '';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

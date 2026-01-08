@@ -1,0 +1,249 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Blog | ELEVER</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Georgia, serif;
+            background: #f7f2ed;
+            color: #333;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 22px 70px;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-size: 28px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .navbar a {
+            margin-left: 26px;
+            text-decoration: none;
+            color: #555;
+            font-size: 15px;
+        }
+
+        .blog-header {
+            text-align: center;
+            padding: 80px 20px 40px;
+        }
+
+        .banner-wrapper {
+            max-width: 1100px;
+            margin: 40px auto 60px;
+            position: relative;
+            height: 380px;
+            overflow: hidden;
+        }
+
+        .banner-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .banner-slide.active {
+            opacity: 1;
+        }
+
+        .banner-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .banner-content {
+            position: absolute;
+            top: 50%;
+            left: 8%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            width: 360px;
+        }
+
+        .blog-toolbar {
+            max-width: 1100px;
+            margin: 40px auto 60px;
+            background: white;
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        .blog-toolbar input,
+        .blog-toolbar select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .blog-grid {
+            max-width: 1100px;
+            margin: 0 auto 80px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .blog-card {
+            background: white;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 25px;
+        }
+
+        .blog-content span {
+            font-size: 13px;
+            color: #c47f5a;
+            text-transform: uppercase;
+        }
+
+        .blog-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .read-more-btn {
+            display: inline-block;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        .read-more-btn button {
+            padding: 10px 26px;
+            border: none;
+            background: #e6b8a2;
+            color: #fff;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .read-more-btn button:hover {
+            background: #d4a08a;
+        }
+    </style>
+</head>
+
+<body>
+    {% include 'partials/navbar.html' %}
+    <div class="blog-header">
+        <h1>ELEVER Journal</h1>
+        <p>Stories, ideas and inspiration for elevated living</p>
+    </div>
+    <div class="banner-wrapper">
+        <div class="banner-slide active"><img src="{% static 'home/images/creative.jpg' %}">
+            <div class="banner-content">
+                <h2>Creative Living</h2>
+                <p>Discover imagination and artistic expression.</p>
+            </div>
+        </div>
+        <div class="banner-slide"><img src="{% static 'home/images/fashion.jpg' %}">
+            <div class="banner-content">
+                <h2>Modern Fashion</h2>
+                <p>Style ideas for confident everyday living.</p>
+            </div>
+        </div>
+        <div class="banner-slide"><img src="{% static 'home/images/photography.jpg' %}">
+            <div class="banner-content">
+                <h2>Photography</h2>
+                <p>Capturing stories through moments.</p>
+            </div>
+        </div>
+        <div class="banner-slide"><img src="{% static 'home/images/timemanagement.jpg' %}">
+            <div class="banner-content">
+                <h2>Time Mastery</h2>
+                <p>Design your days with clarity.</p>
+            </div>
+        </div>
+        <div class="banner-slide"><img src="{% static 'home/images/travel.jpg' %}">
+            <div class="banner-content">
+                <h2>Travel Stories</h2>
+                <p>Explore unforgettable places.</p>
+            </div>
+        </div>
+    </div>
+    <div class="blog-toolbar">
+        <form method="get">
+            <div>
+                <input type="text" name="q" value="{{ request.GET.q }}" placeholder="Search posts...">
+                <select name="category">
+                    <option value="All">All Categories</option>
+                    <option value="Creative">Creative</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Photography">Photography</option>
+                    <option value="Time Management">Time Management</option>
+                    <option value="Travel">Travel</option>
+                </select>
+                <button type="submit">Apply</button>
+            </div>
+        </form>
+    </div>
+    <div class="blog-grid">
+        {% for post in posts %}
+        <div class="blog-card">
+            {% if post.image %}<img src="{{ post.image.url }}">{% else %}<img
+                src="{% static 'home/images/placeholder.jpg' %}">{% endif %}
+            <div class="blog-content">
+                <span>{{ post.category }}</span>
+                <h3>{{ post.title }}</h3>
+                <p style="font-size:13px; color:#888;">By {{ post.author.username }} • ❤️ {{ post.total_likes }}</p>
+                <p>{{ post.content|truncatewords:18 }}</p>
+                <a href="{% url 'blog_detail' post.id %}" class="read-more-btn"><button>Read More</button></a>
+            </div>
+        </div>
+        {% empty %}
+        <p style="text-align:center; width:100%;">No posts found.</p>
+        {% endfor %}
+    </div>
+    <h2 style="text-align:center; margin-bottom:30px;">Editor's Picks</h2>
+    <div class="blog-grid">
+        <div class="blog-card"><img src="{% static 'home/images/editor1.jpg' %}">
+            <div class="blog-content">
+                <h3>Mindful Everyday Living</h3>
+                <p>Building peaceful habits for a balanced life.</p>
+            </div>
+        </div>
+        <div class="blog-card"><img src="{% static 'home/images/editor2.jpg' %}">
+            <div class="blog-content">
+                <h3>Design Your Morning Routine</h3>
+                <p>Simple steps to own your day.</p>
+            </div>
+        </div>
+        <div class="blog-card"><img src="{% static 'home/images/editor3.jpg' %}">
+            <div class="blog-content">
+                <h3>Slow Living Guide</h3>
+                <p>Finding calm in a fast world.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        let slides = document.querySelectorAll('.banner-slide');
+        let index = 0;
+        function showSlide() { slides.forEach(s => s.classList.remove('active')); slides[index].classList.add('active'); index = (index + 1) % slides.length; }
+        setInterval(showSlide, 4000);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<div class="navbar">
+    <div class="logo">ELEVER</div>
+    <nav>
+        <a href="/" class="{% if request.path == '/' %}active{% endif %}">Home</a>
+        <a href="/about/" class="{% if '/about/' in request.path %}active{% endif %}">About</a>
+        <a href="/contact/" class="{% if '/contact/' in request.path %}active{% endif %}">Contact</a>
+        <a href="/blog/"
+            class="{% if '/blog/' in request.path and '/create/' not in request.path %}active{% endif %}">Blog</a>
+
+        {% if user.is_authenticated %}
+        <a href="{% url 'dashboard' %}" class="{% if '/dashboard/' in request.path %}active{% endif %}">Dashboard</a>
+        <a href="/blog/create/" class="{% if '/create/' in request.path %}active{% endif %}">Create Post</a>
+        <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+        <a href="{% url 'login' %}" class="{% if '/login/' in request.path %}active{% endif %}">Login</a>
+        {% endif %}
+
+    </nav>
+</div>
+
+<style>
+    .navbar a.active {
+        color: #c47f5a !important;
+        font-weight: 600;
+        border-bottom: 2px solid #c47f5a;
+        padding-bottom: 3px;
+    }
+</style>

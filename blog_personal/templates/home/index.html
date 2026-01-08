@@ -1,0 +1,229 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <head>
+        <title>ELEVER</title>
+
+
+        <style>
+            .navbar {
+                display: flex;
+                justify-content: space-between;
+                padding: 22px 70px;
+                background: #ffffff;
+                border-bottom: 1px solid #eee;
+            }
+
+            .logo {
+                font-size: 28px;
+                letter-spacing: 2px;
+                font-weight: 600;
+            }
+
+            .navbar a {
+                margin-left: 26px;
+                text-decoration: none;
+                color: #555;
+                font-size: 15px;
+                letter-spacing: 1px;
+            }
+
+            body {
+                margin: 0;
+                font-family: "Georgia", serif;
+                background: #f7f2ed;
+                color: #333;
+            }
+
+            .navbar {
+                display: flex;
+                justify-content: space-between;
+                padding: 22px 70px;
+                background: #ffffff;
+                border-bottom: 1px solid #eee;
+            }
+
+            .logo {
+                font-size: 28px;
+                letter-spacing: 2px;
+                font-weight: 600;
+            }
+
+            .navbar a {
+                margin-left: 26px;
+                text-decoration: none;
+                color: #555;
+                font-size: 15px;
+                letter-spacing: 1px;
+            }
+
+            .hero {
+                height: 450px;
+                background-size: cover;
+                background-position: center;
+                display: flex;
+                align-items: center;
+            }
+
+            .hero-text {
+                background: rgba(255, 255, 255, 0.8);
+                padding: 45px 60px;
+                margin-left: 70px;
+                max-width: 420px;
+            }
+
+            .hero-text h1 {
+                font-size: 40px;
+                margin: 0;
+                letter-spacing: 1px;
+            }
+
+            .hero-text p {
+                margin-top: 10px;
+                color: #777;
+            }
+
+            .categories {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 40px;
+                padding: 80px 70px;
+                background: #fff;
+            }
+
+            .cat img {
+                width: 80%;
+                /* controls image size */
+                max-width: 220px;
+                /* prevents them from becoming too large */
+                display: block;
+                margin: 0 auto;
+                /* centers the image */
+                border-radius: 10px;
+            }
+
+            }
+
+            .cat h3 {
+                text-align: center;
+                margin-top: 15px;
+                font-weight: normal;
+                letter-spacing: 1px;
+            }
+
+            .posts {
+                padding: 80px 70px;
+            }
+
+            .post {
+                display: flex;
+                margin-bottom: 80px;
+                align-items: center;
+            }
+
+            .post.reverse {
+                flex-direction: row-reverse;
+            }
+
+            .post img {
+                width: 46%;
+                border-radius: 8px;
+            }
+
+            .content {
+                padding: 50px;
+            }
+
+            .content h2 {
+                margin: 0;
+                font-weight: normal;
+                letter-spacing: 1px;
+            }
+
+            .content p {
+                margin: 15px 0 25px;
+                color: #777;
+            }
+
+            button {
+                padding: 10px 26px;
+                border: none;
+                background: #e6b8a2;
+                color: #fff;
+                letter-spacing: 1px;
+                cursor: pointer;
+            }
+
+            footer {
+                text-align: center;
+                padding: 35px;
+                background: #ffffff;
+                font-size: 14px;
+                letter-spacing: 1px;
+            }
+        </style>
+    </head>
+
+</head>
+
+<body>
+    {% include 'partials/navbar.html' %}
+
+    <header>
+
+    </header>
+
+    <section class="hero" style="background-image:url('{% static 'home/images/banner.jpg' %}')">
+        <div class="hero-text">
+            <h1>The Self-Care Blog</h1>
+            <p>Health, wellness & lifestyle inspiration</p>
+        </div>
+    </section>
+
+    <section class="categories">
+        <div class="cat">
+            <img src="{% static 'home/images/wellness.jpg' %}">
+            <h3>Wellness</h3>
+        </div>
+        <div class="cat">
+            <img src="{% static 'home/images/diy.jpg' %}">
+            <h3>DIY Beauty</h3>
+        </div>
+        <div class="cat">
+            <img src="{% static 'home/images/food.jpg' %}">
+            <h3>Food</h3>
+        </div>
+    </section>
+
+    <section class="posts">
+
+        <div class="post">
+            <img src="{% static 'home/images/post1.jpg' %}">
+            <div class="content">
+                <h2>Designing Your Dream Life</h2>
+                <p>Create a life you truly love through mindful living and clarity.</p>
+                <a href="{% url 'post_dream_life' %}"><button>Read More</button></a>
+            </div>
+        </div>
+
+        <div class="post reverse">
+            <img src="{% static 'home/images/post2.jpg' %}">
+            <div class="content">
+                <h2>Building Productive Mornings</h2>
+                <p>Simple routines that boost focus, energy, and confidence.</p>
+                <a href="{% url 'post_productive_mornings' %}"><button>Read More</button></a>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        © 2025 ELEVER — All Rights Reserved
+    </footer>
+
+</body>
+
+</html>

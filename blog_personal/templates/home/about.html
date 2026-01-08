@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>About | ELEVER</title>
+
+<style>
+body{
+    margin:0;
+    font-family: "Georgia", serif;
+    background:#f7f2ed;
+    color:#333;
+}
+
+/* NAVBAR STYLE */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 22px 70px;
+    background: #ffffff;
+    border-bottom: 1px solid #eee;
+}
+
+.logo {
+    font-size: 28px;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.navbar a {
+    margin-left: 26px;
+    text-decoration: none;
+    color: #555;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+/* ABOUT SECTION */
+.about-wrapper{
+    max-width:1000px;
+    margin:80px auto;
+    background:white;
+    padding:70px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+}
+
+.about-wrapper h1{
+    font-size:36px;
+    margin-bottom:20px;
+}
+
+.about-wrapper p{
+    font-size:17px;
+    line-height:1.8;
+    color:#666;
+}
+</style>
+</head>
+
+<body>
+
+{% include 'partials/navbar.html' %}
+
+<div class="about-wrapper">
+    <h1>About ELEVER</h1>
+    <p>
+        ELEVER is a modern lifestyle blog dedicated to helping you design a life you truly love.
+        From wellness and self-care to creativity, productivity and inspiration — we bring you
+        thoughtful content that elevates your everyday living.
+    </p>
+
+    <p>
+        We believe small habits create big change. Our mission is to empower you with simple,
+        beautiful and practical ideas that make your journey more mindful and meaningful.
+    </p>
+</div>
+
+</body>
+</html>

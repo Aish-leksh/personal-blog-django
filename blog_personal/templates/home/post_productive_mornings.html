@@ -1,0 +1,124 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Building Productive Mornings | ELEVER</title>
+
+    <style>
+        /* NAVBAR STYLE */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 22px 70px;
+            background: #ffffff;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-size: 28px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .navbar a {
+            margin-left: 26px;
+            text-decoration: none;
+            color: #555;
+            font-size: 15px;
+            letter-spacing: 1px;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, serif;
+            background: #f7f2ed;
+            color: #333;
+        }
+
+        .post-wrapper {
+            max-width: 900px;
+            margin: 100px auto 80px;
+            background: white;
+            padding: 60px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        .post-wrapper h1 {
+            margin: 0 0 10px;
+            font-size: 36px;
+        }
+
+        .post-meta {
+            color: #c47f5a;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .post-image {
+            width: 100%;
+            max-height: 420px;
+            object-fit: cover;
+            margin-bottom: 30px;
+        }
+
+        .post-content {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 28px;
+            background: #c47f5a;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% include 'partials/navbar.html' %}
+
+    <div class="post-wrapper">
+
+        <h1>Building Productive Mornings</h1>
+        <div class="post-meta">Wellness • Productivity</div>
+
+        <img class="post-image" src="{% static 'home/images/post2.jpg' %}">
+
+        <div class="post-content">
+            <p>Simple routines that boost focus, energy, and confidence.</p>
+
+            <p>The way you start your morning sets the tone for your entire day. A chaotic, rushed morning often leads
+                to a stressful, unproductive day. But a calm, intentional morning? That's where the magic happens.</p>
+
+            <p>The secret to productive mornings isn't about waking up at 5 AM or following someone else's routine. It's
+                about creating a morning ritual that works for YOU. Start by identifying what energizes you and what
+                drains you.</p>
+
+            <p>Here are some habits that many successful people swear by:</p>
+            <ul>
+                <li>Wake up at the same time every day, even on weekends</li>
+                <li>Avoid checking your phone for the first hour</li>
+                <li>Move your body—even a 10-minute stretch helps</li>
+                <li>Eat a nourishing breakfast</li>
+                <li>Set 3 intentions or priorities for the day</li>
+            </ul>
+
+            <p>Remember, consistency is key. It takes about 21 days to form a habit, so be patient with yourself. Start
+                with just one new habit and build from there. Your future self will thank you.</p>
+        </div>
+
+        <a href="{% url 'home' %}" class="back-btn">← Back to Home</a>
+
+    </div>
+
+</body>
+
+</html>

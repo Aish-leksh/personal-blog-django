@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Contact | ELEVER</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Georgia", serif;
+            background: #f7f2ed;
+            color: #333;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 22px 70px;
+            background: #ffffff;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-size: 28px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .navbar a {
+            margin-left: 26px;
+            text-decoration: none;
+            color: #555;
+            font-size: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* CONTACT LAYOUT */
+        .contact-section {
+            max-width: 1100px;
+            margin: 80px auto;
+            display: flex;
+            gap: 60px;
+        }
+
+        /* LEFT PANEL */
+        .contact-info {
+            width: 40%;
+            background: white;
+            padding: 50px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-info h1 {
+            margin-bottom: 15px;
+            font-size: 34px;
+        }
+
+        .contact-info p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .info-block {
+            margin-bottom: 20px;
+        }
+
+        .info-block span {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .info-block small {
+            color: #777;
+        }
+
+        /* RIGHT PANEL */
+        .contact-form-box {
+            width: 60%;
+            background: white;
+            padding: 50px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-form-box h2 {
+            margin-bottom: 25px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        .contact-form button {
+            padding: 12px 40px;
+            background: #e6b8a2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% include 'partials/navbar.html' %}
+
+    <div class="contact-section">
+
+        <div class="contact-info">
+            <h1>Contact ELEVER</h1>
+            <p>
+                Whether you have a question, collaboration idea, or simply want to say hello,
+                our team is always happy to connect with you.
+            </p>
+
+            <div class="info-block">
+                <span>Phone</span>
+                <small>+91 98765 43210</small>
+            </div>
+
+            <div class="info-block">
+                <span>Email</span>
+                <small>contact@elever.com</small>
+            </div>
+
+            <div class="info-block">
+                <span>Office</span>
+                <small>
+                    ELEVER Studio,<br>
+                    Trivandrum, Kerala,<br>
+                    India
+                </small>
+            </div>
+
+            <div class="info-block">
+                <span>Working Hours</span>
+                <small>Mon – Fri, 9:00 AM – 6:00 PM</small>
+            </div>
+        </div>
+
+        <div class="contact-form-box">
+            <h2>Send Us a Message</h2>
+
+            {% if success %}
+            <div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                ✅ Thank you! Your message has been sent successfully. We'll get back to you soon.
+            </div>
+            {% endif %}
+
+            <form class="contact-form" method="POST">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <input type="text" name="subject" placeholder="Subject" required>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Create Post | ELEVER</title>
+    <style>
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 22px 70px;
+            background: #ffffff;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-size: 28px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .navbar a {
+            margin-left: 26px;
+            text-decoration: none;
+            color: #555;
+            font-size: 15px;
+        }
+
+        body {
+            margin: 0;
+            background: #f7f2ed;
+            font-family: Georgia, serif;
+        }
+
+        .form-box {
+            max-width: 700px;
+            margin: 80px auto;
+            background: white;
+            padding: 50px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, .1);
+        }
+
+        .form-box h2 {
+            margin: 0 0 30px;
+            font-weight: normal;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: Georgia, serif;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        label {
+            font-size: 14px;
+            color: #555;
+            letter-spacing: 1px;
+        }
+
+        #custom-category {
+            display: none;
+        }
+
+        #custom-category.show {
+            display: block;
+        }
+
+        button {
+            padding: 14px 40px;
+            background: #e6b8a2;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #d4a08a;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% include 'partials/navbar.html' %}
+
+    <div class="form-box">
+        <h2>Create New Post</h2>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <label>Post Title</label>
+            <input type="text" name="title" placeholder="Enter your post title" required>
+
+            <label>Post Content</label>
+            <textarea name="content" rows="8" placeholder="Write your post content here..." required></textarea>
+
+            <label>Category</label>
+            <select name="category" id="category-select" required>
+                <option value="">Select a category</option>
+                <option value="Wellness">Wellness</option>
+                <option value="Lifestyle">Lifestyle</option>
+                <option value="Creative">Creative</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Photography">Photography</option>
+                <option value="Time Management">Time Management</option>
+                <option value="Travel">Travel</option>
+                <option value="Other">Other (Create New)</option>
+            </select>
+
+            <div id="custom-category">
+                <label>Enter Custom Category</label>
+                <input type="text" name="custom_category" id="custom-category-input"
+                    placeholder="Type your new category...">
+            </div>
+
+            <label>Featured Image</label>
+            <input type="file" name="image" required>
+
+            <button type="submit">Publish Post</button>
+        </form>
+    </div>
+
+    <script>
+        const categorySelect = document.getElementById('category-select');
+        const customCategoryDiv = document.getElementById('custom-category');
+        const customCategoryInput = document.getElementById('custom-category-input');
+
+        categorySelect.addEventListener('change', function () {
+            if (this.value === 'Other') {
+                customCategoryDiv.classList.add('show');
+                customCategoryInput.required = true;
+            } else {
+                customCategoryDiv.classList.remove('show');
+                customCategoryInput.required = false;
+                customCategoryInput.value = '';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Designing Your Dream Life | ELEVER</title>
+
+    <style>
+        /* NAVBAR STYLE */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 22px 70px;
+            background: #ffffff;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-size: 28px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .navbar a {
+            margin-left: 26px;
+            text-decoration: none;
+            color: #555;
+            font-size: 15px;
+            letter-spacing: 1px;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, serif;
+            background: #f7f2ed;
+            color: #333;
+        }
+
+        .post-wrapper {
+            max-width: 900px;
+            margin: 100px auto 80px;
+            background: white;
+            padding: 60px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        .post-wrapper h1 {
+            margin: 0 0 10px;
+            font-size: 36px;
+        }
+
+        .post-meta {
+            color: #c47f5a;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .post-image {
+            width: 100%;
+            max-height: 420px;
+            object-fit: cover;
+            margin-bottom: 30px;
+        }
+
+        .post-content {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 28px;
+            background: #c47f5a;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% include 'partials/navbar.html' %}
+
+    <div class="post-wrapper">
+
+        <h1>Designing Your Dream Life</h1>
+        <div class="post-meta">Lifestyle • Self Care</div>
+
+        <img class="post-image" src="{% static 'home/images/post1.jpg' %}">
+
+        <div class="post-content">
+            <p>Create a life you truly love through mindful living and clarity.</p>
+
+            <p>Have you ever stopped to ask yourself what your dream life really looks like? Not the version society
+                tells you to chase, but the one that makes your heart sing. The one where you wake up excited, not
+                dreading the day ahead.</p>
+
+            <p>Designing your dream life starts with clarity. Take time to reflect on what truly matters to you. What
+                are your core values? What activities make you lose track of time? What kind of relationships do you
+                want to nurture?</p>
+
+            <p>Once you have clarity, it's time to take action. Start small. Make one change today that aligns with your
+                vision. Maybe it's waking up 30 minutes earlier to meditate, or finally signing up for that class you've
+                been putting off.</p>
+
+            <p>Remember, your dream life isn't a destination—it's a journey. Embrace the process, celebrate small wins,
+                and don't be afraid to adjust your vision as you grow. You deserve a life that feels authentically
+                yours.</p>
+        </div>
+
+        <a href="{% url 'home' %}" class="back-btn">← Back to Home</a>
+
+    </div>
+
+</body>
+
+</html>
