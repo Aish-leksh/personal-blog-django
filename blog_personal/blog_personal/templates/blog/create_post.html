@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Create Post | ELEVER</title>
+<style>
+    /* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 22px 70px;
+    background: #ffffff;
+    border-bottom: 1px solid #eee;
+}
+
+.logo {
+    font-size: 28px;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.navbar a {
+    margin-left: 26px;
+    text-decoration: none;
+    color: #555;
+    font-size: 15px;
+}
+body{
+    background:#f7f2ed;
+    font-family:Georgia, serif;
+}
+.form-box{
+    max-width:700px;
+    margin:80px auto;
+    background:white;
+    padding:50px;
+    box-shadow:0 12px 35px rgba(0,0,0,.1);
+}
+input, textarea, select{
+    width:100%;
+    padding:12px;
+    margin-top:12px;
+    margin-bottom:20px;
+}
+button{
+    padding:12px 30px;
+    background:#c47f5a;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+{% include 'partials/navbar.html' %}
+
+<div class="form-box">
+    <h2>Create New Post</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <input type="text" name="title" placeholder="Post Title" required>
+
+        <textarea name="content" rows="8" placeholder="Post Content" required></textarea>
+
+        <select name="category" required>
+            <option>Wellness</option>
+            <option>Lifestyle</option>
+            <option>Creative</option>
+            <option>Fashion</option>
+            <option>Photography</option>
+            <option>Time Management</option>
+            <option>Travel</option>
+        </select>
+
+        <input type="file" name="image" required>
+
+        <button type="submit">Publish</button>
+    </form>
+</div>
+
+</body>
+</html>
